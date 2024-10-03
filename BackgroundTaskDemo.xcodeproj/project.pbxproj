@@ -148,6 +148,9 @@
 				DEVELOPMENT_TEAM = V5U53J8M62;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackgroundTaskDemo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "vamos a trackear tu ubicacion";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Necesitamos obtener tu ubicacion para las geocercas";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -176,6 +179,9 @@
 				DEVELOPMENT_TEAM = V5U53J8M62;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackgroundTaskDemo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "vamos a trackear tu ubicacion";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Necesitamos obtener tu ubicacion para las geocercas";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

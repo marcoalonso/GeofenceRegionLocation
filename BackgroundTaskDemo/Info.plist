@@ -21,5 +21,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+		<string>location</string>
+	</array>
 </dict>
 </plist>
