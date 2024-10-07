@@ -34,8 +34,24 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        // Helps to save battery when device is not moving
+        locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.distanceFilter = 10
+        locationManager.startMonitoringSignificantLocationChanges()
+        /*
+         /// TODO: - Manejar la notificacion push
+        locationManager.startMonitoringLocationPushes { data, error in
+            if let e = error {
+                print("Debug: error getting push \(e.localizedDescription)")
+            }
+            
+            guard let data = data else {
+                print("Debug: error data not found!")
+                return
+            }
+            print("Debug: data \(data)")
+        }
+        */
     }
     
     func requestLocationPermission() {
@@ -55,6 +71,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // Función para monitorear una región geográfica
     func startMonitoring(geofenceRegion: CLCircularRegion) {
+        guard CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) else {
+            print("Debug: MonitoringNotAvailable ******* ")
+            return
+        }
         locationManager.startMonitoring(for: geofenceRegion)
         print("Iniciando monitoreo para la región geográfica: \(geofenceRegion.identifier)")
     }
@@ -82,6 +102,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if let location = manager.location {
             getWeatherData(for: location)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("Region monitoring failed with error: \(error.localizedDescription)")
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

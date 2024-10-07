@@ -15,6 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupGeofencing()
+        
+        /// Escanear balizas, aun no se prueba
+        BeaconManager.shared.startScanning { uuid in
+            print("Detected beacon UUID: \(uuid.uuidString)")
+        }
     }
     
     private func setupGeofencing() {
@@ -27,6 +32,7 @@ class ViewController: UIViewController {
         guard LocationManager.shared.authorizationStatus == .authorizedAlways else {
             print("Debug: App does not have correct location authorization")
             showAlert(message: "App does not have correct location authorization")
+            showLocationPermissionAlert()
             return
         }
         
@@ -54,6 +60,27 @@ class ViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alertController, animated: true, completion: nil)
         }
+    
+    func showLocationPermissionAlert() {
+        let alert = UIAlertController(
+            title: "Location Access Required",
+            message: "Please enable location access in Settings.",
+            preferredStyle: .alert
+        )
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(settingsAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 
 
 }

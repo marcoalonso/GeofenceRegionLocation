@@ -27,6 +27,8 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 		<string>location</string>
+		<string>bluetooth-peripheral</string>
+		<string>bluetooth-central</string>
 	</array>
 </dict>
 </plist>
